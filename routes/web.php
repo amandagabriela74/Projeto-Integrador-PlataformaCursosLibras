@@ -48,7 +48,9 @@ Route::get('/course', function () {
     return view('course');
 });
 
-
+Route::get('/quiz.quiz', function () {
+    return view('quiz.quiz');
+});
 
 
 //quando tiver algum erro referente a rota, mostra na tela esse return
