@@ -17,7 +17,7 @@
                             <p>• Calendádio</p>
                             <a href="course">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Inscrever-se</button>
-                ''         </a>
+                            </a>
                         </div>
                         <div class=" box-content h-90 w-40  p-4 border-4 ">
                             <h3>Módulo 2</h3>
