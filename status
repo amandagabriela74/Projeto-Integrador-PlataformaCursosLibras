@@ -1,0 +1,28 @@
+
+   INFO  Running migrations.  
+
+  2022_11_02_040531_create_modules_table .................................................... 24ms DONE
+  2022_11_02_040544_create_quizzes_table ..................................................... 1ms FAIL
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'quizzes' already exists (SQL: create table `quizzes` (`id` bigint unsigned not null auto_increment primary key, `title` varchar(255) not null, `date` date not null, `module_id` bigint unsigned not null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci')
+
+  at vendor/laravel/framework/src/Illuminate/Database/Connection.php:760
+    756▕         // If an exception occurs when attempting to run a query, we'll format the error
+    757▕         // message to include the bindings with SQL, which will make this exception a
+    758▕         // lot more helpful to the developer instead of just the database's errors.
+    759▕         catch (Exception $e) {
+  ➜ 760▕             throw new QueryException(
+    761▕                 $query, $this->prepareBindings($bindings), $e
+    762▕             );
+    763▕         }
+    764▕     }
+
+      [2m+9 vendor frames [22m
+  10  database/migrations/2022_11_02_040544_create_quizzes_table.php:22
+      Illuminate\Support\Facades\Facade::__callStatic()
+
+      [2m+25 vendor frames [22m
+  36  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle()
