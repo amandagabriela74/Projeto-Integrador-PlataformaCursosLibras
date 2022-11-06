@@ -9,6 +9,20 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-row  gap-2 columns-2 md:columns-3 lg:columns-4">
+                        @foreach (\App\Models\Module::all() as $module)
+                        <div class="border-2 border-black box-content h-90 w-40  p-4 ">
+                            <h1>{{$module->title}}</h1>
+                            <a href="course">
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3">Inscrever-se</button>
+                            </a>
+                            <a href="quiz.quiz">
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Quiz</button>
+                            </a>
+                        </div>
+                        @endforeach
+
+
+                        <!--
                         <div class=" box-content h-90 w-40  p-4 border-4 ">
                             <h1>Módulo 1</h1>
                             <p>• Alfabeto</p>
@@ -35,6 +49,7 @@
                             <p>• Reino Animal</p>
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Inscrever-se</button>
                         </div>
+                    -->
                     </div>
                 </div>
             </div>
