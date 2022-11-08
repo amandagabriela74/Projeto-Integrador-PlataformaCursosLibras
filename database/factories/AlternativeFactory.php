@@ -17,7 +17,8 @@ class AlternativeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'alternative' => $this->faker->sentence(),
+            'correct' => false
         ];
     }
 }

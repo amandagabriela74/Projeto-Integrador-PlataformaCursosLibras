@@ -12,6 +12,12 @@ class Question extends Model
         'question',
         'quiz_id',
     ];
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
+    }
+
     public function alternatives(){
         return $this->hasMany(Alternative::class);
     }

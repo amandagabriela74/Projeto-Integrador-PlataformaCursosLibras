@@ -13,12 +13,11 @@ class Alternative extends Model
         'alternative',
         'correct',
         'question_id',
-        'answer_id',
     ];
 
-    public function answers()
+    public function question()
     {
-        return $this->hasOne(Answer::class);
+        return $this->belongsTo(Question::class, 'question_id');
     }
 
 }
