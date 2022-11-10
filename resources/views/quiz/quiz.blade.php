@@ -13,13 +13,17 @@
                 <article class='' id=''>
                     Leia a questão e clique na resposta correta
                 </article>
-                @foreach (\App\Models\Question::all() as $question)
+               <!-- Module::find(1)-> quizzes[0]->questions -->
+              <!--  foreach (\App\Models\Question::all() as $question) -->
+                @foreach (\App\Models\Module::find(1)-> quizzes[0]->questions as $question)
                 <section id="" class="w-9/12 text-center">
                     <div class=" border border-black border-solid rounded-md">
                         <h1 id="" class="py-6 text-2xl font-semibold"> {{$question->question}}</h1> <!--pergunta-->
                     </div>
                     <div class="pb-5">
+                       <!-- Module::find(1)-> quizzes[0]->questions[0]->alternatives -->
                         @foreach (\App\Models\Question::find(1)->alternatives as $alternative)
+                        
                     <ul>
                         <li class="py-2  font-semibold my-2 rounded-md bg-gray-900 hover:bg-gray-800 text-white cursor-pointer">{{$alternative->alternative}}</li> <!--alternativas-->
                     </ul>
