@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view(' index');
 });
 
 //a rota jogos, chama o controller CursosController, na puclic function index
