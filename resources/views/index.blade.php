@@ -1,13 +1,18 @@
 <x-guest-layout>
     <div class="bg-sky-400 min-h-screen">
         <header class="flex justify-between items-center bg-white p-5">
-            <h1 class="text-sky-400 text-3xl ml-10">Logo</h1>
-            
-            <div class="mr-10">
-
-                <a class="text-sky-400 p-6" href="">Entrar</a>
-                <a class="text-sky-400 p-6" href="">Cadastre-se</a>
-            </div>
+            <h1 class="text-sky-400 text-3xl ml-10">Logo</h1>  
+            @if (Route::has('login'))
+                <div class="mr-10">
+                    @auth
+                        @else
+                        <a class="text-sky-400 p-6" href="{{ route('login') }}">Entrar</a>
+                        @if (Route::has('register'))
+                        <a class="text-sky-400 p-6" href="{{ route('register') }}">Cadastre-se</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
         </header>
 
         <section class="flex mt-40 px-20">
