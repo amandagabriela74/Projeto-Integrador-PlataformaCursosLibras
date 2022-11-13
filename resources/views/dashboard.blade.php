@@ -12,13 +12,10 @@
                         @foreach (\App\Models\Module::all() as $module)
                         <div class="border-2 border-black box-content h-90 w-42  p-4 ">
                             <h1 class="uppercase font-mono">{{$module->title}}</h1>
-                            @foreach (\App\Models\Course::all() as $course)
-                            <p class="font-mono">-{{$course->titulo}}</p>
-                            @endforeach
                             <a href="course">
                                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3">Inscrever-se</button>
                             </a>
-                            <a href="{{ route('quiz.quiz') }}">
+                            <a href="{{ route('test-module', $module->id) }}">
                                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Quiz</button>
                             </a>
                         </div>

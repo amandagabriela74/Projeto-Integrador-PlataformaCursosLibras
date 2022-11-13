@@ -14,8 +14,9 @@
                         <!-- Module::find(1)-> quizzes[0]->questions -->
                         <!--  foreach (\App\Models\Question::all() as $question) -->
 
-                        <form method="POST" action="{{ route('quiz-store') }}" class="w-full">
-                            @foreach (\App\Models\Quiz::all() as $quiz)
+                        <form method="POST" action="{{ route('test-store') }}" class="w-full">
+                            @csrf
+                            @foreach ($quizzes as $quiz)
                                 <section id="" class="w-9/12 text-center">
                                     <div>
                                         <h1 id="" class="py-6 text-2xl font-semibold"> {{ $quiz->title }}</h1>
@@ -27,14 +28,15 @@
                                                     <!--pergunta-->
                                                 </div>
                                                 <div class="pb-5">
+                                                    <input type="hidden" name="questions[{{ $question->id }}]" value="">
                                                     <!-- Module::find(1)-> quizzes[0]->questions[0]->alternatives -->
                                                     @foreach ($question->alternatives as $alternative)
                                                         <div class="flex flex-row">
-                                                            <input class="" type="radio"
-                                                                name="{{ $question->id }}" id=""
-                                                                value="">
+                                                            <input id="alternative-{{ $alternative->id }}" type="radio"
+                                                                name="questions[{{ $question->id }}]"
+                                                                value="{{ $alternative->id }}">
                                                             <label class="form-check-label"
-                                                                for="{{ $alternative->id }}">
+                                                                for="alternative-{{ $alternative->id }}">
                                                                 {{ $alternative->alternative }}
                                                             </label>
                                                         </div>

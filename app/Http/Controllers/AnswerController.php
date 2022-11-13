@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alternative;
 use App\Models\Answer;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
 {
@@ -12,9 +15,12 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        Auth::user()->user_id;
+        $moduleId = $request->id;
+        $quizzes = Quiz::where('module_id', $moduleId)->get();
+        return view('quiz/quiz', ['quizzes'=> $quizzes]);
     }
 
     /**
@@ -35,7 +41,19 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+        $userId = Auth::user()->id;  
+        $alternatives = Alternative::find(array_values($request->input('questions')));
+
+        foreach($alternatives as $alternative) {
+            Answer::create([
+                'user_id' => $userId,
+                'question_id' => $alternative->question_id,
+                'alternative_id' => $alternative-> id
+            ]);
+        }
+
+        return redirect()->route('dashboard');
     }
 
     /**

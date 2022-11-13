@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CourseController;
+use App\Models\Answer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,13 +50,10 @@ Route::get('/course', function () {
     return view('course');
 });
 
-Route::get('/quiz.quiz', function () {
-    return view('quiz.quiz');
-});
 
-Route::resource('/quiz', \App\Http\Controllers\QuizController::class);
-Route::post('/quiz.quiz',[\App\Http\Controllers\QuizController::class, 'store'])->name('quiz-store');
-
+// Route::resource('answers', AnswerController::class);
+Route::get('test/module/{id}', [AnswerController::class, 'index'])->name('test-module');
+Route::post('test/store', [AnswerController::class, 'store'])->name('test-store');
 
 //quiz
 Route::resource('quiz', \App\Http\Controllers\QuizController::class);
