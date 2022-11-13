@@ -18,7 +18,7 @@
                             <a href="course">
                                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mb-3">Inscrever-se</button>
                             </a>
-                            <a href="quiz.quiz">
+                            <a href="{{ route('quiz.quiz') }}">
                                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Quiz</button>
                             </a>
                         </div>

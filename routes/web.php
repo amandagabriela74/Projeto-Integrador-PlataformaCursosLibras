@@ -55,6 +55,16 @@ Route::get('/quiz.quiz', function () {
 Route::resource('/quiz', \App\Http\Controllers\QuizController::class);
 Route::post('/quiz.quiz',[\App\Http\Controllers\QuizController::class, 'store'])->name('quiz-store');
 
+
+//quiz
+Route::resource('quiz', \App\Http\Controllers\QuizController::class);
+
+//questions
+Route::resource('questions', \App\Http\Controllers\QuestionController::class);
+
+//alternatives
+Route::resource('alternatives', \App\Http\Controllers\AlternativeController::class);
+
 //quando tiver algum erro referente a rota, mostra na tela esse return
 Route::fallback(function(){
     return"Erro na rota";

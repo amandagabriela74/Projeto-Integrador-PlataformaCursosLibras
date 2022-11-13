@@ -15,6 +15,9 @@ class AlternativeController extends Controller
     public function index()
     {
         //
+        $alternatives = Alternative::all();
+
+        return view('quiz.alternatives.index', compact('alternatives'));
     }
 
     /**
@@ -25,6 +28,7 @@ class AlternativeController extends Controller
     public function create()
     {
         //
+        return view('quiz.alternatives.create');
     }
 
     /**
@@ -36,6 +40,13 @@ class AlternativeController extends Controller
     public function store(Request $request)
     {
         //
+        Alternative::create([
+            'alternative' => $request->alternative,
+            'correct' => $request->correct,
+            'question_id' => $request->question
+        ]);
+
+        return redirect('alternatives');
     }
 
     /**

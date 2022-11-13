@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Quiz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
@@ -16,7 +17,7 @@ class QuizController extends Controller
     {
         $quizzes = Quiz::all();
 
-        return view('quiz.quiz', compact('quizzes'));
+        return view('quiz.quiz.index', compact('quizzes'));
     }
 
     /**
@@ -26,7 +27,7 @@ class QuizController extends Controller
      */
     public function create()
     {
-        //
+        return view('quiz.quiz.create');
     }
 
     /**
@@ -37,7 +38,12 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Quiz::create([
+            'title' => $request->title,
+            'module_id' => $request->module,
+        ]);
+
+        return redirect('quiz');
     }
 
     /**

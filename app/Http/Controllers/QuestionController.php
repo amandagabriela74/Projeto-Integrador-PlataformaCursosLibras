@@ -15,6 +15,9 @@ class QuestionController extends Controller
     public function index()
     {
         //
+        $questions = Question::all();
+
+        return view('quiz.questions.index', compact('questions'));
     }
 
     /**
@@ -25,6 +28,7 @@ class QuestionController extends Controller
     public function create()
     {
         //
+        return view('quiz.questions.create');
     }
 
     /**
@@ -36,6 +40,12 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         //
+        Question::create([
+            'question' => $request->question,
+            'quiz_id' => $request->quiz,
+        ]);
+
+        return redirect('questions');
     }
 
     /**
