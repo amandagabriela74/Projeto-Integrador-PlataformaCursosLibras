@@ -17,7 +17,12 @@ class AnswerController extends Controller
      */
     public function index(Request $request)
     {
-        Auth::user()->user_id;
+        $userId = 1;
+        $quizId = 1;
+
+        $answers = Answer::where('user_id', $userId)->where('quiz_id', $quizId)->get();
+        //dd($answers);
+
         $moduleId = $request->id;
         $quizzes = Quiz::where('module_id', $moduleId)->get();
         return view('quiz/quiz', ['quizzes'=> $quizzes]);
@@ -42,12 +47,14 @@ class AnswerController extends Controller
     public function store(Request $request)
     {
       
-        $userId = Auth::user()->id;  
+        $userId = Auth::user()->id;
+        $quizId = $request->input('quizId');
         $alternatives = Alternative::find(array_values($request->input('questions')));
 
         foreach($alternatives as $alternative) {
             Answer::create([
                 'user_id' => $userId,
+                'quiz_id' => $quizId,
                 'question_id' => $alternative->question_id,
                 'alternative_id' => $alternative-> id
             ]);

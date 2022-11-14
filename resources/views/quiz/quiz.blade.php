@@ -13,10 +13,10 @@
                         </article>
                         <!-- Module::find(1)-> quizzes[0]->questions -->
                         <!--  foreach (\App\Models\Question::all() as $question) -->
-
-                        <form method="POST" action="{{ route('test-store') }}" class="w-full">
-                            @csrf
-                            @foreach ($quizzes as $quiz)
+                        @foreach ($quizzes as $quiz)
+                            <form method="POST" action="{{ route('test-store') }}" class="w-full">
+                                @csrf
+                                <input type="hidden" name="quizId" value="{{$quiz->id}}">
                                 <section id="" class="w-9/12 text-center">
                                     <div>
                                         <h1 id="" class="py-6 text-2xl font-semibold"> {{ $quiz->title }}</h1>
@@ -28,12 +28,12 @@
                                                     <!--pergunta-->
                                                 </div>
                                                 <div class="pb-5">
-                                                    <input type="hidden" name="questions[{{ $question->id }}]" value="">
+
                                                     <!-- Module::find(1)-> quizzes[0]->questions[0]->alternatives -->
                                                     @foreach ($question->alternatives as $alternative)
                                                         <div class="flex flex-row">
-                                                            <input id="alternative-{{ $alternative->id }}" type="radio"
-                                                                name="questions[{{ $question->id }}]"
+                                                            <input id="alternative-{{ $alternative->id }}"
+                                                                type="radio" name="questions[{{ $question->id }}]"
                                                                 value="{{ $alternative->id }}">
                                                             <label class="form-check-label"
                                                                 for="alternative-{{ $alternative->id }}">
@@ -46,13 +46,13 @@
                                         @endforeach
                                     </div>
                                 </section>
-                            @endforeach
-                            <div class="flex flex-col">
-                                <x-text-input type="submit" name="submit" value="Enviar"
-                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded cursor-pointer w-24 mt-4" />
-                            </div>
-                            <h2 id="">Resultado:</h2>
-                            <h2 id="">Pontos:</h2>
+                        @endforeach
+                        <div class="flex flex-col">
+                            <x-text-input type="submit" name="submit" value="Enviar"
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded cursor-pointer w-24 mt-4" />
+                        </div>
+                        <h2 id="">Resultado:</h2>
+                        <h2 id="">Pontos:</h2>
 
                         </form>
 

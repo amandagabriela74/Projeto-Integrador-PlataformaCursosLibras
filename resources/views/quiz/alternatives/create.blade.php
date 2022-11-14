@@ -4,13 +4,13 @@ create alternative
         @csrf
         <div class="form-group">
             <label for="alternative">{{ __('Alternativa') }}</label>
-            <input type="text" class="form-control"  placeholder="{{ __('Digite uma alternativa') }}" name="question" />
+            <input type="text" class="form-control"  placeholder="{{ __('Digite uma alternativa') }}" name="alternative" />
         </div>
         <div>
             <label for="correct">{{ __('Correct') }}</label>
             <select name="correct" id="">
-                <option value="true" name="true">True</option>
-                <option value="false" name="false">False</option>
+                <option value="1" name="true">True</option>
+                <option value="0" name="false">False</option>
             </select>
         </div>
 

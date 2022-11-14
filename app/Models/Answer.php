@@ -13,6 +13,7 @@ class Answer extends Model
         'user_id',
         'question_id',
         'alternative_id',
+        'quiz_id',
     ];
 
     public function owner()
@@ -29,4 +30,9 @@ class Answer extends Model
     {
         return $this->belongsTo(Alternative::class);
     }
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
+    }    
 }

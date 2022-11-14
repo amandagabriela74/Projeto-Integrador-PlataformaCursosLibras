@@ -40,6 +40,7 @@ class AlternativeController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request); 
         Alternative::create([
             'alternative' => $request->alternative,
             'correct' => $request->correct,
