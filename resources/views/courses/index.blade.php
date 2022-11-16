@@ -2,7 +2,7 @@
     <x-slot name="header">
 
         <div>
-            <a href="{{ route('alternatives.create') }}"
+            <a href="{{ route('course-create') }}"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded cursor-pointer w-32 ">
                 Adicionar nova alternativa</a>
         </div>
@@ -36,7 +36,7 @@
 
             </div>
             <div x-show="open" class="w-3/4 flex flex-row justify-center gap-2">
-                alternative index
+                course index
             </div>
 
 
