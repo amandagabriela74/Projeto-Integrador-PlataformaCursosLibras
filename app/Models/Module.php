@@ -20,4 +20,8 @@ class Module extends Model
     public function quizzes(){
         return $this->hasMany(Quiz::class);
     }
+
+    public function courses(){
+        return $this->hasMany(Course::class);
+    }
 }
