@@ -14,6 +14,7 @@ class Course extends Model
         'topico',
         'embed',
         'descricao',
+        'module_id'
     ];
 }
 

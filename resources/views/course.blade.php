@@ -32,7 +32,7 @@
         <div x-on:click="open=true" class=" h-10 mb-2 w-4/5 bg-blue-500  hover:bg-blue-700 text-center rounded-md cursor-pointer content-center">
             <h2>{{$courses->titulo}}</h2>
         </div>
-        
+        @endforeach
         <a href="quiz.quiz">
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded cursor-pointer">Quiz</button>
         </a>
@@ -46,7 +46,7 @@
             allowfullscreen></iframe>
         </div>
     </div>
-@endforeach
+
 
 
 </section>

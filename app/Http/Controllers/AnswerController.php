@@ -25,7 +25,7 @@ class AnswerController extends Controller
 
         $moduleId = $request->id;
         $quizzes = Quiz::where('module_id', $moduleId)->get();
-        return view('quiz/quiz', ['quizzes'=> $quizzes]);
+        return view('quiz.quiz', ['quizzes'=> $quizzes]);
     }
 
     /**
