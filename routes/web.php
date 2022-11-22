@@ -47,7 +47,7 @@ Route::get('/dashboard', function () {
 
 
 //Route::get('/course', function () { return view('course');});
-Route::get('module/{id}', [CourseController::class, 'index'])->name('course-module');
+Route::get('course/module/{id}', [CourseController::class, 'index'])->name('course-module');
 
 
 // Route::resource('answers', AnswerController::class);

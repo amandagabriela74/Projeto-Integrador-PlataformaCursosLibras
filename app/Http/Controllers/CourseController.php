@@ -12,15 +12,15 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         //dd('Olá Mundo');
-        //$courses = Course::all();
+        $courses = Course::all();
         //dd($courses);
        // return redirect()->route('course-module');
       //  return view('painel-admin'); //exportar a variavel por parametro
-       // return view('painel-admin', ['courses'=> $courses]);
+         return view('painel-admin', ['courses'=> $courses]);
 
-       $moduleId = $request->id;
-       $courses = Course::where('module_id', $moduleId)->get();
-       return view('course', ['courses'=> $courses]);
+      // $moduleId = $request->id;
+      // $courses = Course::where('module_id', $moduleId)->get();
+      // return view('course', ['courses'=> $courses]);
   
     }
 
