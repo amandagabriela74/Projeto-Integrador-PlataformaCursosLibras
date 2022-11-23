@@ -50,15 +50,30 @@ class AnswerController extends Controller
         $userId = Auth::user()->id;
         $quizId = $request->input('quizId');
         $alternatives = Alternative::find(array_values($request->input('questions')));
+        $corrects = 0;
 
-        foreach($alternatives as $alternative) {
-            Answer::create([
-                'user_id' => $userId,
-                'quiz_id' => $quizId,
-                'question_id' => $alternative->question_id,
-                'alternative_id' => $alternative-> id
-            ]);
+        foreach($alternatives as $alternative){
+            if($alternative->corrects == 1){
+                $corrects++;
+            }
         }
+
+            Answer::create([
+                'user-id' =>$userId,
+                'quiz_id' =>$quizId,
+                'score' => 10* $corrects / sizeof($alternatives),
+            ]);
+        
+
+        // código direcionado ao choice
+        // foreach($alternatives as $alternative) {
+        //     Answer::create([
+        //         'user_id' => $userId,
+        //         'quiz_id' => $quizId,
+        //         'question_id' => $alternative->question_id,
+        //         'alternative_id' => $alternative-> id
+        //     ]);
+        // }
 
         return redirect()->route('dashboard');
     }
