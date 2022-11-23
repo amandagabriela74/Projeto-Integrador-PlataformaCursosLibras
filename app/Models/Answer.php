@@ -11,9 +11,8 @@ class Answer extends Model
 
     protected $fillable = [
         'user_id',
-        'question_id',
-        'alternative_id',
         'quiz_id',
+        'socre', 
     ];
 
     public function owner()
