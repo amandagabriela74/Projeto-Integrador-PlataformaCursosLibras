@@ -53,13 +53,13 @@ class AnswerController extends Controller
         $corrects = 0;
 
         foreach($alternatives as $alternative){
-            if($alternative->corrects == 1){
+            if($alternative->correct == 1){
                 $corrects++;
             }
         }
 
             Answer::create([
-                'user-id' =>$userId,
+                'user_id' =>$userId,
                 'quiz_id' =>$quizId,
                 'score' => 10* $corrects / sizeof($alternatives),
             ]);

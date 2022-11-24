@@ -12,22 +12,12 @@ class Answer extends Model
     protected $fillable = [
         'user_id',
         'quiz_id',
-        'socre', 
+        'score', 
     ];
 
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function question()
-    {
-        return $this->belongsTo(Question::class);
-    }
-
-    public function alternative()
-    {
-        return $this->belongsTo(Alternative::class);
     }
 
     public function quiz()
