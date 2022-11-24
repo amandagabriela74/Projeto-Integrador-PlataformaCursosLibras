@@ -25,8 +25,10 @@ Route::get('/', function () {
 
 //todas as rotas dentro desse grupo de rotas terão o mesmo prefixo 'painel-admin'
 Route::prefix('painel-admin')->group(function(){
-    Route::get('/', [CourseController::class, 'index'])->name('course-index');   //rota listagem dos cursos
-    
+    //Route::get('/', [CourseController::class, 'index'])->name('course-index');   //rota listagem dos cursos
+    Route::get('/', function () {
+         return view('painel-admin');
+        })->name('admin');
     
     //CREATE
     Route::get('/create-course', [CourseController::class, 'create'])->name('course-create');   //rota criação dos cursos
