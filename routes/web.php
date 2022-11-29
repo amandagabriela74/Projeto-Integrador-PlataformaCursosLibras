@@ -37,7 +37,7 @@ Route::prefix('painel-admin')->group(function(){
 
     //UPDATE
     Route::get('/{id}/edit-course', [CourseController::class, 'edit'])->where('id', '[0-9]+')->name('course-edit');   //rota editar
-    Route::put('/{id}', [CourseController::class, 'update'])->where('id', '[0-9]+')->name('course-update');   
+    Route::put('/{course}', [CourseController::class, 'update'])->where('id', '[0-9]+')->name('course-update');   
 
     //DELETE
     Route::delete('/{id}', [CourseController::class, 'destroy'])->where('id', '[0-9]+')->name('course-destroy');
@@ -50,7 +50,7 @@ Route::get('/dashboard', function () {
 
 
 //Route::get('/course', function () { return view('course');});
-Route::get('course/module/{id}', [CourseController::class, 'index'])->name('course-module');
+Route::get('course/module/{module}', [CourseController::class, 'index'])->name('course-module');
 
 
 // Route::resource('answers', AnswerController::class);

@@ -4,23 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Curso;
+use App\Models\Module;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    public function index(Request $request)
+    public function index(Module $module)
     {
         //dd('Olá Mundo');
-        $courses = Course::all();
+        // $courses = Course::all();
         //dd($courses);
        // return redirect()->route('course-module');
       //  return view('painel-admin'); //exportar a variavel por parametro
         // return view('painel-admin', ['courses'=> $courses]);
 
-       $moduleId = $request->id;
-       $courses = Course::where('module_id', $moduleId)->get();
-       return view('course', ['courses'=> $courses]);
+      //  $moduleId = $id;
+      //  $module = Module::find($moduleId);
+      //  $courses = Course::where('module_id', $moduleId)->get();
+      $courses = $module->courses;
+       return view('course', ['moduleCourses'=> $courses]);
   
     }
 
@@ -50,7 +53,7 @@ class CourseController extends Controller
       }
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, Course $course){
       //dd($request);
       //dd($id);
       $data = [
@@ -59,7 +62,8 @@ class CourseController extends Controller
         'embed'=> $request->embed,
         'descricao'=> $request->descricao,
       ];
-      Course::where('id', $id)->update($data); //Para atualizar no banco , com o MOdel onde o id seja igual a variavel id, passa um update na variavel data
+      // Course::where('id', $id)->update($data); //Para atualizar no banco , com o MOdel onde o id seja igual a variavel id, passa um update na variavel data
+      $course->update($data);
       return redirect()->route('course-index');
 
     }

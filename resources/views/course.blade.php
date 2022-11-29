@@ -26,15 +26,17 @@
             </div>
         </section>
     -->
-<section x-data="{open:false}" class="flex justify-center ">
+<section x-data="{open:{{$moduleCourses[0]->id ?? 'false'}}}" class="flex justify-center ">
     <div class="w-1/4 flex flex-col justify-start items-center py-3 gap-2 bg-scroll h-screen overflow-y-auto  font-sans text-lg font-semibold text-neutral-50 bg-gray-800">
-        @foreach(\App\Models\Course::all() as $courses)
-        <div x-on:click="open=true" class=" h-10 mb-2 w-4/5 bg-blue-500  hover:bg-blue-700 text-center rounded-md cursor-pointer content-center">
+        @foreach($moduleCourses as $courses)
+        <div x-on:click="open = {{$courses->id}}" class=" h-10 mb-2 w-4/5 bg-blue-500  hover:bg-blue-700 text-center rounded-md cursor-pointer content-center">
             <h2>{{$courses->titulo}}</h2>
         </div>
         @endforeach
     </div>
-    <div x-show="open" class="w-3/4 flex flex-row justify-center gap-2">
+
+    @foreach($moduleCourses as $courses)
+    <div x-show="open == {{$courses->id}}" class="w-3/4 flex flex-row justify-center gap-2">
         <div class=" w-4/5 h-3/4">
            <h1>Curso: {{$courses->titulo}}</h1>
             <iframe class=" w-full h-full" src="{{$courses->embed}}"
@@ -43,6 +45,7 @@
             allowfullscreen></iframe>
         </div>
     </div>
+    @endforeach
 
 
 
