@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alternative;
 use App\Models\Answer;
+use App\Models\Choice;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,7 @@ class AnswerController extends Controller
 
         $moduleId = $request->id;
         $quizzes = Quiz::where('module_id', $moduleId)->get();
-        return view('quiz.quiz', ['quizzes'=> $quizzes]);
+        return view('quiz.quiz', ['quizzes' => $quizzes]);
     }
 
     /**
@@ -46,24 +47,31 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-      
+
         $userId = Auth::user()->id;
         $quizId = $request->input('quizId');
         $alternatives = Alternative::find(array_values($request->input('questions')));
         $corrects = 0;
 
-        foreach($alternatives as $alternative){
-            if($alternative->correct == 1){
+        foreach ($alternatives as $alternative) {
+            if ($alternative->correct == 1) {
                 $corrects++;
             }
         }
 
-            Answer::create([
-                'user_id' =>$userId,
-                'quiz_id' =>$quizId,
-                'score' => 10* $corrects / sizeof($alternatives),
+        $createdAnswers = Answer::create([
+            'user_id' => $userId,
+            'quiz_id' => $quizId,
+            'score' => 10 * $corrects / sizeof($alternatives),
+        ]);
+
+
+        foreach ($alternatives as $alternative) {
+            Choice::create([
+                'answer_id' => $createdAnswers->id,
+                'alternative_id' => $alternative->id,
             ]);
-        
+        }
 
         // código direcionado ao choice
         // foreach($alternatives as $alternative) {

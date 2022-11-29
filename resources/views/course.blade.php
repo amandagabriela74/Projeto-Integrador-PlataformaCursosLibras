@@ -33,9 +33,6 @@
             <h2>{{$courses->titulo}}</h2>
         </div>
         @endforeach
-        <a href="quiz.quiz">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded cursor-pointer">Quiz</button>
-        </a>
     </div>
     <div x-show="open" class="w-3/4 flex flex-row justify-center gap-2">
         <div class=" w-4/5 h-3/4">
