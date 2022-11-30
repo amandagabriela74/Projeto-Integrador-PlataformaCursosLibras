@@ -3,7 +3,7 @@
         <header class="flex justify-between items-center bg-white p-5 h-[100px]">
             <h1 class="text-sky-400 text-3xl ml-10 font-bold">Logo</h1>  
             @if (Route::has('login'))
-                <div class="mr-10 p font-semibold">
+                <nav class="mr-10 p font-semibold">
                     @auth
                         @else
                         <a class="text-white m-2 px-3 py-2 bg-sky-400 rounded-xl hover:bg-sky-500" href="{{ route('login') }}">Entrar</a>
@@ -11,12 +11,12 @@
                         <a class="text-white m-2 px-3 py-2 bg-sky-400 rounded-xl hover:bg-sky-500" href="{{ route('register') }}">Cadastre-se</a>
                         @endif
                     @endauth
-                </div>
+                </nav>
             @endif
         </header>
 
         <main>
-            <div class="max-w-screen-2xl h-[500px] mx-auto sm:px-6 lg:px-20 flex justify-center items-center">
+            <div class="max-w-screen-xl h-[500px] mx-auto sm:px-6 lg:px-20 flex justify-center items-center">
                 <div>
                     <h2 class="text-5xl text-white w-1/2 font-semibold">Torne-se um apaixonado por linguagem de sinais</h2>
                     
@@ -27,10 +27,10 @@
         </main>
 
         <section>
-            <div class="max-w-screen-2xl bg-sky-500 h-[600px] mx-auto sm:px-6 lg:px-20">
+            <div class="max-w-full bg-sky-500 h-[600px] mx-auto sm:px-6 lg:px-20">
                 <h2 class="text-center font-bold text-white text-4xl py-[65px] ">Nossa missão é transformar vidas</h2>
 
-                <div class="flex gap-24 justify-center text-white text-center">
+                <div class="flex gap-24 justify-center text-2xl text-white text-center">
                     <article>
                         <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-900 font-bold text-5xl">+200 mil</h2>
                         <p>de vidas impactadas</p>
@@ -55,7 +55,7 @@
         </section>
 
         <section>
-            <div class="max-w-screen-2xl h-[500px] bg-sky-700"></div>
+            <div class="max-w-full h-[500px] bg-sky-700"></div>
         </section>
     </div>
 </x-guest-layout>
