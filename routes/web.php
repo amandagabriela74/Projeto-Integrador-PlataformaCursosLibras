@@ -58,7 +58,13 @@ Route::get('test/module/{id}', [AnswerController::class, 'index'])->name('test-m
 Route::post('test/store', [AnswerController::class, 'store'])->name('test-store');
 
 
+
 Route::post('choice', [ChoiceController::class, 'store'])->name('choice-store');
+
+//answers
+Route::resource('answers', \App\Http\Controllers\AnswerController::class);
+Route::get('result/{id}',[AnswerController::class, 'show'])->name('result-show');
+
 
 //quiz
 Route::resource('quiz', \App\Http\Controllers\QuizController::class);

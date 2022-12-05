@@ -73,17 +73,7 @@ class AnswerController extends Controller
             ]);
         }
 
-        // código direcionado ao choice
-        // foreach($alternatives as $alternative) {
-        //     Answer::create([
-        //         'user_id' => $userId,
-        //         'quiz_id' => $quizId,
-        //         'question_id' => $alternative->question_id,
-        //         'alternative_id' => $alternative-> id
-        //     ]);
-        // }
-
-        return redirect()->route('dashboard');
+        return redirect()->route('result-show', $alternative->id);
     }
 
     /**
@@ -92,9 +82,17 @@ class AnswerController extends Controller
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function show(Answer $answer)
-    {
-        //
+
+    public function show($id){
+        $result = Answer::findOrFail($id);
+        if ($result){
+            //no segundo parametro da função view estou passando o array informando o nome da variavel que será criada na view e o valor dela
+            return view('results', [
+                'resultAnswers'=> $result
+            ]);
+        } else{
+            return view('results')->with('msg', 'Resultado não encontrado');
+        }
     }
 
     /**
