@@ -1,16 +1,10 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div>
-            <a href="{{ route('questions.create') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded cursor-pointer w-32 ">
-                Adicionar nova questão</a>
-        </div>
-    </x-slot>
+
     <section class="flex justify-between ">
     <x-menu></x-menu>
 
         <div class="py-12 w-full pl-28">
-            <div class="p-6 bg-white border-b border-gray-200 w-4/5 h-96 content-center">
+            <div class="p-6 bg-white border-b rounded-lg w-4/5 h-96 content-center">
                 <div class=" flex flex-row justify-center gap-2">
                     <div class="flex flex-col ">
                         <form action="{{ route('alternatives.store') }}" method="POST">
