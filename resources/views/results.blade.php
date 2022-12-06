@@ -11,7 +11,7 @@
                             {{-- senão, mostra os daddos --}}
                             <div x-data="{ open: false }" class="flex flex-col items-center">
                                 <h2 class="text-lg font-semibold">Parabéns! Você completou o teste!</h2>
-                                <h3 class="mb-8 text-lg">Você acertou <b> X </b> de <b> Y </b></h3>
+                                <h3 class="mb-8 text-lg">Você acertou <b> X </b> de <b> {{ sizeof($resultAnswers->quiz->questions) }} </b></h3>
                                 <p><strong>Pontuação:</strong> {{ $resultAnswers->score }} </p>
                                 <a href="">
                                     <x-text-input type="submit" name="submit" value="Refazer Quiz"
@@ -24,7 +24,6 @@
                             </div>
                         @endif
                     </section>
-
 
                 </div>
             </div>

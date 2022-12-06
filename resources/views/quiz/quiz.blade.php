@@ -10,13 +10,13 @@
                 <div class=" overflow-hidden shadow-sm sm:rounded-lg w-3/5  ">
                     <div class="p-6 ">
                         <section class="flex flex-col justify-center items-center  ">
-                            <form method="POST" action="{{ route('test-store') }}" class="w-full ">
+                            <form method="POST" action="{{ route('test-store') }}" class="w-full " x-data="{question: 0}">
                                 @csrf
                                 <input type="hidden" name="quizId" value="{{ $quiz->id }}">
                                 <section id="" class=" text-center">
                                     <div>
-                                        @foreach ($quiz->questions as $question)
-                                            <div class=" bg-white mb-2 rounded-xl">
+                                        @foreach ($quiz->questions as $i => $question)
+                                            <div class=" bg-white mb-2 rounded-xl" x-show="question == {{$i}}">
                                                 <div class=" rounded-md py-8">
                                                     <h1 id="" class="py-2 text-2xl font-semibold">
                                                         {{ $question->question }}</h1>  <!--pergunta-->
@@ -37,14 +37,23 @@
                                                         </div>
                                                     @endforeach
                                                     <div class="">
+                                                        @if ($i == sizeof($quiz->questions) - 1)
                                                         <x-text-input type="submit" name="submit" value="Enviar"
                                                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded cursor-pointer w-24 mb-4 mr-4" />
+                                                        @else
+                                                            <x-text-input value="Próxima" x-on:click="question++"
+                                                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded cursor-pointer w-24 mb-4 mr-4" />
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
                                         @endforeach
                                     </div>
                                 </section>
+
+                               
+                                                        
+                                       
         @endforeach
         {{-- <div class="flex flex-col">
             <x-text-input type="submit" name="submit" value="Enviar"

@@ -73,7 +73,7 @@ class AnswerController extends Controller
             ]);
         }
 
-        return redirect()->route('result-show', $alternative->id);
+        return redirect()->route('result-show', $createdAnswers->id);
     }
 
     /**
@@ -84,7 +84,7 @@ class AnswerController extends Controller
      */
 
     public function show($id){
-        $result = Answer::findOrFail($id);
+        $result = Answer::find($id);
         if ($result){
             //no segundo parametro da função view estou passando o array informando o nome da variavel que será criada na view e o valor dela
             return view('results', [
