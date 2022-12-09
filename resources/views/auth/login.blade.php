@@ -35,15 +35,15 @@
             <!-- Remember Me -->
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-sky-400 shadow-sm focus:border-sky-400 focus:ring focus:ring-sky-400 focus:ring-opacity-50" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Lembre-me') }}</span>
                 </label>
             </div>
      
 
             <div class="flex items-center justify-center mt-4">
                 <x-primary-button class="ml-3">
-                    {{ __('Log in') }}
+                    {{ __('Entrar') }}
                 </x-primary-button>
             </div>
         </form>
