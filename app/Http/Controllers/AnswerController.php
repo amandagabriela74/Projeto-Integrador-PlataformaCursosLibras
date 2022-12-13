@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alternative;
 use App\Models\Answer;
 use App\Models\Choice;
+use App\Models\Module;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,17 +17,9 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Module $module)
     {
-        $userId = 1;
-        $quizId = 1;
-
-        $answers = Answer::where('user_id', $userId)->where('quiz_id', $quizId)->get();
-        //dd($answers);
-
-        $moduleId = $request->id;
-        $quizzes = Quiz::where('module_id', $moduleId)->get();
-        return view('quiz.quiz', ['quizzes' => $quizzes]);
+        return view('quiz.quiz', ['quizzes' => $module->quizzes]);
     }
 
     /**

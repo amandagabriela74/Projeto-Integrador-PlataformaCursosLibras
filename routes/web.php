@@ -54,7 +54,7 @@ Route::get('course/module/{module}', [CourseController::class, 'index'])->name('
 
 
 // Route::resource('answers', AnswerController::class);
-Route::get('test/module/{id}', [AnswerController::class, 'index'])->name('test-module');
+Route::get('test/module/{module}', [AnswerController::class, 'index'])->name('test-module');
 Route::post('test/store', [AnswerController::class, 'store'])->name('test-store');
 
 
