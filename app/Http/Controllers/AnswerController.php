@@ -19,7 +19,7 @@ class AnswerController extends Controller
      */
     public function index(Module $module)
     {
-        return view('quiz.quiz', ['quizzes' => $module->quizzes]);
+        return view('quiz.quiz', ['quiz' => $module->quizzes[0]]);
     }
 
     /**
