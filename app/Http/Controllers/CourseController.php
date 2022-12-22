@@ -22,21 +22,30 @@ class CourseController extends Controller
       //  $moduleId = $id;
       //  $module = Module::find($moduleId);
       //  $courses = Course::where('module_id', $moduleId)->get();
-      $courses = $module->courses;
-       return view('course', ['moduleCourses'=> $courses]);
+     // $courses = $module->courses;
+      // return view('course', ['moduleCourses'=> $courses]);
+      $courses = Course::all();
+      return view('courses.index', compact('courses'));
   
     }
 
     public function create(){
-      return view('create-course');
+      return view('courses.create');
     }
 
 
     public function store(Request $request){
      // dd($request);
      Course::create($request->all());
-     return redirect()->route('course-index');   //após a criação retorna para o index
+     return redirect()->route('courses.index');   //após a criação retorna para o index
 
+    }
+
+    public function show(Module $module)
+    {
+        //
+        $courses = $module->courses;
+        return view('course', ['moduleCourses'=> $courses]);
     }
 
 
@@ -45,11 +54,11 @@ class CourseController extends Controller
       if(!empty($courses))//verificação: se a variação cursos (não encontrar o curso referente ao id) estiver vazia ele redireciona para a listagem
       {
         //dd($cursos);
-        return view('edit-course', ['courses'=> $courses]);
+        return view('courses.edit', ['courses'=> $courses]);
     }
       else
       {
-        return redirect()->route('course-index');
+        return redirect()->route('courses.index');
       }
     }
 
@@ -64,7 +73,7 @@ class CourseController extends Controller
       ];
       // Course::where('id', $id)->update($data); //Para atualizar no banco , com o MOdel onde o id seja igual a variavel id, passa um update na variavel data
       $course->update($data);
-      return redirect()->route('course-index');
+      return redirect()->route('courses.index');
 
     }
 
@@ -72,7 +81,7 @@ class CourseController extends Controller
     public function destroy($id){
       //dd($id);
       Course::where('id',$id)->delete();
-      return redirect()->route('course-index');
+      return redirect()->route('courses.index');
     }
 /*
     public function destroy($id){

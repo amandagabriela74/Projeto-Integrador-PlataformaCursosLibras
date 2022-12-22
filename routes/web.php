@@ -50,7 +50,7 @@ Route::get('/dashboard', function () {
 
 
 //Route::get('/course', function () { return view('course');});
-Route::get('course/module/{module}', [CourseController::class, 'index'])->name('course-module');
+Route::get('course/module/{module}', [CourseController::class, 'show'])->name('course-module');
 
 
 // Route::resource('answers', AnswerController::class);
@@ -76,6 +76,9 @@ Route::resource('questions', \App\Http\Controllers\QuestionController::class);
 
 //alternatives
 Route::resource('alternatives', \App\Http\Controllers\AlternativeController::class);
+
+//courses
+Route::resource('courses', \App\Http\Controllers\CourseController::class);
 
 //quando tiver algum erro referente a rota, mostra na tela esse return
 Route::fallback(function(){

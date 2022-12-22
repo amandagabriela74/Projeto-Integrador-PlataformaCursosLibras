@@ -16,5 +16,10 @@ class Course extends Model
         'descricao',
         'module_id'
     ];
+
+    public function module()
+    {
+        return $this->belongsTo(Module::class);
+    }
 }
 

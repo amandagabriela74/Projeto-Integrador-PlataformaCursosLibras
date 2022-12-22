@@ -28,7 +28,7 @@
 
         <section>
             <div class="max-w-full bg-sky-500 h-[600px] mx-auto sm:px-6 lg:px-20">
-                <h2 class="text-center font-bold text-white text-4xl py-[65px] ">Nossa missão é transformar vidas</h2>
+                <h2 class="text-center font-bold text-white text-4xl py-[65px] ">Nossa missão é transformar vidas   </h2>
 
                 <div class="flex gap-24 justify-center text-2xl text-white text-center">
                     <article>

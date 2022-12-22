@@ -4,10 +4,10 @@
     <div x-data="{ course: false }" class=" w-full text-center  cursor-pointer border-b-2 ">
         <h1 @click="course =! course" class="h-10 hover:bg-white/30 rounded-md">Cursos</h1>
         <div x-show="course">
-            <a href="course">
+            <a href="courses">
                 <p x-show="course " class="bg-white/10 text-sm h-8 border-b-2 border-white/20">Visualizar Cursos</p>
             </a>
-            <a href="{{ route('course-create')}}">
+            <a href="{{ route('courses.create')}}">
                 <p x-show="course " class="bg-white/10 text-sm  h-8 border-b-2 border-white/20">Criar Cursos</p>
             </a>
         </div>
