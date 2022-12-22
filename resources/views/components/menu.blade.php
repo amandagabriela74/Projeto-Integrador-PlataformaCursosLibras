@@ -12,14 +12,19 @@
             </a>
         </div>
     </div>
+    <div x-data="{ module: false }" class=" w-full text-center  cursor-pointer border-b-2 ">
+        <h1 @click="module =! module" class="h-10 hover:bg-white/30 rounded-md">Módulos</h1>
+        <div x-show="module">
+            <a href="modules">
+                <p x-show="module " class="bg-white/10 text-sm h-8 border-b-2 border-white/20">Visualizar/Editar</p>
+            </a>
+        </div>
+    </div>
     <div x-data="{ question: false }" class=" w-full   text-center  cursor-pointer border-b-2">
         <h1 @click="question =! question" class="h-10 hover:bg-white/30 rounded-md">Quiz</h1>
         <div>
-            <a href="">
+            <a href="quizzes">
                 <p x-show="question " class="bg-white/10 text-sm h-8 border-b-2 border-white/20">Visualizar/Editar</p>
-            </a>
-            <a href="">
-                <p x-show="question " class="bg-white/10 text-sm  h-8 border-b-2 border-white/20">Criar Quizzes</p>
             </a>
         </div>
     </div>

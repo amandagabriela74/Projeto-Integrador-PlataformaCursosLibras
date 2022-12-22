@@ -14,7 +14,9 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        //
+        $modules = Module::all();
+
+        return view('quiz.modules.index', compact('modules'));
     }
 
     /**
@@ -55,11 +57,20 @@ class ModuleController extends Controller
      * @param  \App\Models\Module  $module
      * @return \Illuminate\Http\Response
      */
-    public function edit(Module $module)
+    public function edit($id)
     {
         //
+        $modules = Module::where('id',$id)->first();
+        if(!empty($modules))
+        {
+            //dd($modules);
+            return view('quiz.modules.edit', compact('modules'));
+        }
+          else
+          {
+            return redirect()->route('modules');
+          }
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -70,6 +81,13 @@ class ModuleController extends Controller
     public function update(Request $request, Module $module)
     {
         //
+        $data = [
+            'title'=> $request->title,
+          ];
+
+          $module->update($data);
+          return redirect()->route('modules.index');
+
     }
 
     /**

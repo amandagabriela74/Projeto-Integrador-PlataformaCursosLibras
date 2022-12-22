@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Module;
 use App\Models\Question;
+use App\Models\Quiz;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class QuestionController extends Controller
 {
@@ -65,9 +70,11 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(Question $question): View
     {
-        //
+        $quizzes = Quiz::all()->pluck('title', 'id');
+
+        return view('quiz.questions.edit', compact('question', 'quizzes'));
     }
 
     /**
@@ -77,19 +84,30 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
-    {
-        //
-    }
 
+
+    public function update(Request $request, Question $question){
+        //dd($request);
+        //dd($question);
+        $data = [
+          'question'=> $request->question,
+          'quiz_id'=> $request->quiz,
+        ];
+        // Course::where('id', $id)->update($data); //Para atualizar no banco , com o MOdel onde o id seja igual a variavel id, passa um update na variavel data
+        $question->update($data);
+        return redirect()->route('questions');
+  
+      } 
+  
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
-    {
-        //
-    }
+    public function destroy($id){
+        //dd($id);
+        Question::where('id',$id)->delete();
+        return redirect()->route('questions.index');
+      }
 }

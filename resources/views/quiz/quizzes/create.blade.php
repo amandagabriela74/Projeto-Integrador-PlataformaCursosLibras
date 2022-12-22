@@ -1,5 +1,5 @@
 <div class="card-body">
-    <form action="{{ route('quiz.store') }}" method="POST">
+    <form action="{{ route('quizzes.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="title">{{ __('title') }}</label>

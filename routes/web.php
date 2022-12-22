@@ -25,7 +25,7 @@ Route::get('/', function () {
 //Route::get('/painel-admin', [CursosController::class, 'index']);
 
 //todas as rotas dentro desse grupo de rotas terão o mesmo prefixo 'painel-admin'
-Route::prefix('painel-admin')->group(function(){
+Route::group(['prefix' => 'admin'], function() {
     //Route::get('/', [CourseController::class, 'index'])->name('course-index');   //rota listagem dos cursos
     Route::get('/', function () {
          return view('painel-admin');
@@ -65,9 +65,11 @@ Route::post('choice', [ChoiceController::class, 'store'])->name('choice-store');
 Route::resource('answers', \App\Http\Controllers\AnswerController::class);
 Route::get('result/{id}',[AnswerController::class, 'show'])->name('result-show');
 
+//modules
+Route::resource('modules', \App\Http\Controllers\ModuleController::class);
 
 //quiz
-Route::resource('quiz', \App\Http\Controllers\QuizController::class);
+Route::resource('quizzes', \App\Http\Controllers\QuizController::class);
 
 //questions
 Route::resource('questions', \App\Http\Controllers\QuestionController::class);

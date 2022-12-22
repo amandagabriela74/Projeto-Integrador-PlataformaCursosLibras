@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alternative;
+use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class AlternativeController extends Controller
 {
@@ -67,9 +69,11 @@ class AlternativeController extends Controller
      * @param  \App\Models\Alternative  $alternative
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alternative $alternative)
+    public function edit(Alternative $alternative): View
     {
-        //
+        $questions = Question::all()->pluck('question', 'id');
+
+        return view('quiz.alternatives.edit', compact('alternative', 'questions'));
     }
 
     /**
@@ -81,7 +85,16 @@ class AlternativeController extends Controller
      */
     public function update(Request $request, Alternative $alternative)
     {
-        //
+        //dd($request);
+        //dd($alternative);
+        $data = [
+            'alternative'=> $request->alternative,
+            'correct'=> $request->correct,
+            'question_id'=> $request->question,
+          ];
+          // Course::where('id', $id)->update($data); //Para atualizar no banco , com o MOdel onde o id seja igual a variavel id, passa um update na variavel data
+          $alternative->update($data);
+          return redirect()->route('alternatives.index');
     }
 
     /**
@@ -90,8 +103,10 @@ class AlternativeController extends Controller
      * @param  \App\Models\Alternative  $alternative
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alternative $alternative)
+    public function destroy($id)
     {
-        //
+                //dd($id);
+                Alternative::where('id',$id)->delete();
+                return redirect()->route('alternatives.index');
     }
 }
