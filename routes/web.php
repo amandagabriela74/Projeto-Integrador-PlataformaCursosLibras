@@ -80,6 +80,8 @@ Route::resource('alternatives', \App\Http\Controllers\AlternativeController::cla
 //courses
 Route::resource('courses', \App\Http\Controllers\CourseController::class);
 
+Route::resource('comments', \App\Http\Controllers\CommentController::class);
+
 //quando tiver algum erro referente a rota, mostra na tela esse return
 Route::fallback(function(){
     return"Erro na rota";
