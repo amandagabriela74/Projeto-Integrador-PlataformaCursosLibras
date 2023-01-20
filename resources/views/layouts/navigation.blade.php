@@ -15,6 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    
+                    <x-nav-link :href="route('users.show',[Auth::user()->id] )" :active="request()->routeIs('users.show', [Auth::user()->id])">
+                        {{ __('Perfil') }}
+                    </x-nav-link>
+                    
                     @if (Auth::user()->is_admin)
                     <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                         {{ __('admin') }}
@@ -49,6 +54,10 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+                        <x-dropdown-link>
+                            {{ __('Meu Perfil') }}
+                    </x-dropdown-link>
+                         
                     </x-slot>
                 </x-dropdown>
             </div>

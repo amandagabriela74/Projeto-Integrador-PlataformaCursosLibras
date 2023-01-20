@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\ChoiceController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\UserController;
 use App\Models\Answer;
 use Illuminate\Support\Facades\Route;
 
@@ -81,6 +82,8 @@ Route::resource('alternatives', \App\Http\Controllers\AlternativeController::cla
 Route::resource('courses', \App\Http\Controllers\CourseController::class);
 
 Route::resource('comments', \App\Http\Controllers\CommentController::class);
+
+Route::resource('users', UserController::class);
 
 //quando tiver algum erro referente a rota, mostra na tela esse return
 Route::fallback(function(){
