@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserController extends Controller
 {
@@ -51,8 +53,8 @@ class UserController extends Controller
         //#user = User::where('id', $id)->first();
         if (!$user = User::find($id)) //if para caso o usuário n exista
             return back();
-        
-            return view('users.profile', compact('user'));
+
+        return view('users.profile', compact('user'));
     }
 
     /**
@@ -65,7 +67,7 @@ class UserController extends Controller
     {
         if (!$user = Auth::user())
             return redirect()->route('users.index');
-            
+
         return view('users.edit-profile', compact('user'));
     }
 
@@ -79,28 +81,45 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         if (!$user = Auth::user())
-        return redirect()->route('users.index');
-    //return view('users.edit', compact('user'));
-    //dd($request->all()); //ver todas requests
+            return redirect()->route('users.index');
+        //return view('users.edit', compact('user'));
+        //dd($request->all()); //ver todas requests
 
-    $data = $request->only('name', 'email');
-    if ($request->password)
-        $data['password'] = bcrypt($request->password);
+        $data = $request->only('name', 'email');
+        if ($request->password)
+            $data['password'] = bcrypt($request->password);
 
-    if ($request->image){
-        if ($user->image && Storage::exists($user->image)) {
-            Storage::delete($user->image);
+        if ($request->image) {
+            if ($user->image && Storage::exists($user->image)) {
+                Storage::delete($user->image);
+            }
+
+            $path = $request->image->store('users');
+            $data['image'] = $path;
         }
+        //dd($request->image);
 
-       $path = $request->image->store('users');
-       $data['image'] = $path;
+        $user->update($data);
 
+        return back();
     }
-    //dd($request->image);
 
-    $user->update($data);
+    public function showCertificate($id)
+    {
+        //#user = User::where('id', $id)->first();
+        if (!$user = User::find($id)) //if para caso o usuário n exista
+            return back();
 
-    return back();
+        return view('users.certificates', compact('user'));
+    }
+
+
+    public function generatePDF()
+    {
+        $user = User::all();
+        $pdf = PDF::loadView('users.certificate', compact('user'))->setPaper('a4', 'landscape');
+
+        return $pdf->stream('certificado.pdf');
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\UserController;
 use App\Models\Answer;
 use Illuminate\Support\Facades\Route;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,19 +27,19 @@ Route::get('/', function () {
 //Route::get('/painel-admin', [CursosController::class, 'index']);
 
 //todas as rotas dentro desse grupo de rotas terão o mesmo prefixo 'painel-admin'
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin'], function () {
     //Route::get('/', [CourseController::class, 'index'])->name('course-index');   //rota listagem dos cursos
     Route::get('/', function () {
-         return view('painel-admin');
-        })->name('admin');
-    
+        return view('painel-admin');
+    })->name('admin');
+
     //CREATE
     Route::get('/create-course', [CourseController::class, 'create'])->name('course-create');   //rota criação dos cursos
     Route::post('/', [CourseController::class, 'store'])->name('course-store');   //rota armazenar os cursos criados
 
     //UPDATE
     Route::get('/{id}/edit-course', [CourseController::class, 'edit'])->where('id', '[0-9]+')->name('course-edit');   //rota editar
-    Route::put('/{course}', [CourseController::class, 'update'])->where('id', '[0-9]+')->name('course-update');   
+    Route::put('/{course}', [CourseController::class, 'update'])->where('id', '[0-9]+')->name('course-update');
 
     //DELETE
     Route::delete('/{id}', [CourseController::class, 'destroy'])->where('id', '[0-9]+')->name('course-destroy');
@@ -48,7 +49,6 @@ Route::group(['prefix' => 'admin'], function() {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
 
 //Route::get('/course', function () { return view('course');});
 Route::get('course/module/{module}', [CourseController::class, 'show'])->name('course-module');
@@ -64,7 +64,7 @@ Route::post('choice', [ChoiceController::class, 'store'])->name('choice-store');
 
 //answers
 Route::resource('answers', \App\Http\Controllers\AnswerController::class);
-Route::get('result/{id}',[AnswerController::class, 'show'])->name('result-show');
+Route::get('result/{id}', [AnswerController::class, 'show'])->name('result-show');
 
 //modules
 Route::resource('modules', \App\Http\Controllers\ModuleController::class);
@@ -85,9 +85,12 @@ Route::resource('comments', \App\Http\Controllers\CommentController::class);
 
 Route::resource('users', UserController::class);
 
+Route::get('certificados/{id}', [UserController::class, 'showCertificate'])->name('certificates');
+Route::get('generatePDF', [UserController::class, 'generatePDF'])->name('user.pdf');
+
 //quando tiver algum erro referente a rota, mostra na tela esse return
-Route::fallback(function(){
-    return"Erro na rota";
+Route::fallback(function () {
+    return "Erro na rota";
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
