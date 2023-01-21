@@ -19,6 +19,10 @@
                     <x-nav-link :href="route('users.show',[Auth::user()->id] )" :active="request()->routeIs('users.show', [Auth::user()->id])">
                         {{ __('Perfil') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('certificates',[Auth::user()->id] )" :active="request()->routeIs('certificates', [Auth::user()->id])">
+                        {{ __('Certificados') }}
+                    </x-nav-link>
                     
                     @if (Auth::user()->is_admin)
                     <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
