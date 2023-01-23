@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subscription;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
@@ -14,7 +16,7 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        //
+      
     }
 
     /**
@@ -44,9 +46,13 @@ class SubscriptionController extends Controller
      * @param  \App\Models\Subscription  $subscription
      * @return \Illuminate\Http\Response
      */
-    public function show(Subscription $subscription)
+    public function show($id)
     {
-        //
+
+        if (!$user = User::find($id)) //if para caso o usuário n exista
+            return back();
+
+        return view('teste', compact('user'));
     }
 
     /**

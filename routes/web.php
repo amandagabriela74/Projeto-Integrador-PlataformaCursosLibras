@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\ChoiceController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use App\Models\Answer;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,8 @@ Route::group(['prefix' => 'admin'], function () {
     //DELETE
     Route::delete('/{id}', [CourseController::class, 'destroy'])->where('id', '[0-9]+')->name('course-destroy');
 });
+
+Route::resource('/dashboardd', SubscriptionController::class);
 
 
 Route::get('/dashboard', function () {
