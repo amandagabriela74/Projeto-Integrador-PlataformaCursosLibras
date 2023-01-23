@@ -24,4 +24,9 @@ class Module extends Model
     public function courses(){
         return $this->hasMany(Course::class);
     }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
