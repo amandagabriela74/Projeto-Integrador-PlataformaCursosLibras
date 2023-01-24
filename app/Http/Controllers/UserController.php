@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Module;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -122,6 +123,17 @@ class UserController extends Controller
         $pdf = PDF::loadView('users.certificate', compact('user'))->setPaper('a4', 'landscape');
 
         return $pdf->stream('certificado.pdf');
+    }
+
+    public function showCourses($id)
+    {
+        $modules = Module::all();
+        $courses = Course::all();
+        //#user = User::where('id', $id)->first();
+        if (!$user = User::find($id)) //if para caso o usuário n exista
+            return back();
+
+        return view('users.courses', compact('user', 'courses', 'modules'));
     }
 
     /**

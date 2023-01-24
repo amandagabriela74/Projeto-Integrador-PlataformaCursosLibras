@@ -24,7 +24,7 @@
                 </x-nav-menu-user>
             </li>
             <li>
-                <x-nav-menu-user >
+                <x-nav-menu-user :href="route('coursesUser', [Auth::user()->id])" :active="request()->routeIs('coursesUser', [Auth::user()->id])" >
                     <svg aria-hidden="true"
                         class="m-3 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

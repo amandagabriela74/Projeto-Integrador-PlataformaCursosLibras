@@ -53,6 +53,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/coursesUser', function () {
+    return view('users.courses');
+})->middleware(['auth'])->name('coursesUser');
+
 //Route::get('/course', function () { return view('course');});
 Route::get('course/module/{module}', [CourseController::class, 'show'])->name('course-module');
 
@@ -90,6 +94,11 @@ Route::resource('users', UserController::class);
 
 Route::get('certificados/{id}', [UserController::class, 'showCertificate'])->name('certificates');
 Route::get('generatePDF', [UserController::class, 'generatePDF'])->name('user.pdf');
+
+Route::get('meusCursos/{id}', [UserController::class, 'showCourses'])->name('coursesUser');
+
+Route::get('/support', function () { 
+    return view('support');})->name('support');
 
 //quando tiver algum erro referente a rota, mostra na tela esse return
 Route::fallback(function () {
