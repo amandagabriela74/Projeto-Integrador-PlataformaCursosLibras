@@ -1,7 +1,10 @@
 <x-app-layout>
-    <section>
-        <div class="h-screen ">
+    <div class="container-fluid flex flex-row ">
+        <div class="">
+            <x-menu-user></x-menu-user>
 
+        </div>
+        <div class="h-screen w-full">
             <div class="flex justify-center max-screen h-screen mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white h-4/5 w-4/6 overflow-hidden shadow-sm sm:rounded-lg my-20 py-8  ">
                     <div class=" sm:p-0 border-gray-200">
@@ -39,7 +42,4 @@
                 </div>
             </div>
         </div>
-
-    </section>
-
 </x-app-layout>
