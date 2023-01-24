@@ -74,12 +74,12 @@
 
 
                                 <ul class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1  gap-x-8">
-                                    @forelse ($courses as $course)
+                                    @forelse ($user->subscriptionsCourses as $item)
                                         <div
                                             class=" font-ligth flex flex-row justify-between border-b border-black/50 text-gray-800 dark:text-gray-400">
-                                            <li class="">{{ $course->titulo }}</li>
+                                            <li class="">{{ $item->course->titulo }}</li>
 
-                                            <a href="#"
+                                            <a href="{{ route('user.pdf') }}"
                                                 class="inline-flex items-center justify-center px-5 py-3  ">
 
                                                 <svg class="w-6 h-4" xmlns="http://www.w3.org/2000/svg"
