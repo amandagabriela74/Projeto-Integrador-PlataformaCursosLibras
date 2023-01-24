@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Quiz;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -48,11 +50,12 @@ class SubscriptionController extends Controller
      */
     public function show($id)
     {
-
+        $quizzes = Quiz::all();
+        $courses = Course::all();
         if (!$user = User::find($id)) //if para caso o usuário n exista
             return back();
 
-        return view('teste', compact('user'));
+        return view('teste', compact('user', 'courses', 'quizzes'));
     }
 
     /**
