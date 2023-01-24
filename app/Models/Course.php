@@ -26,5 +26,10 @@ class Course extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function subscriptionsCourses()
+    {
+        return $this->hasMany(SubscriptionCourse::class);
+    }
 }
 
