@@ -39,7 +39,19 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $userId = Auth::user()->id;
+        $moduleId = $request->input('moduleId');
+        $completed = 1;
+
+        
+        Subscription::create([
+            'user_id' => $userId,
+            'module_id' => $moduleId,
+            'completed' => $completed,
+        ]);
+
+        return redirect()->route('course-module', $moduleId);
     }
 
     /**

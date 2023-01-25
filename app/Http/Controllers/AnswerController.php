@@ -40,7 +40,7 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $userId = Auth::user()->id;
         $quizId = $request->input('quizId');
         $alternatives = Alternative::find(array_values($request->input('questions')));

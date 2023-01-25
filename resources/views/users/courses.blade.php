@@ -3,25 +3,14 @@
         <div class="">
             <x-menu-user></x-menu-user>
 
-        </div>
-{{--         @foreach ($user->subscriptions as $item)
-            {{$item->module->title}}
-
-            @if ($item->completed == 1)
-            <div>vc concluiu</div>
-            {{$item->module->title}}
-            @else
-                
-            @endif
-        @endforeach --}}
-        
+        </div>       
         <div class="h-screen w-full">
             <div class="p-20 border-b flex flex-col h-1/2">
                 <h4 class="pb-3 text-2xl font-bold text-gray-700 dark:text-white">
                     Cursos em andamentos</h4>
                 <div class=" grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
                     @foreach ($user->subscriptions as $item)
-                    @if ($item->completed != 0)
+                    @if ($item->completed == 1)
                         <div
                             class="max-w-sm bg-white border border-gray-200 rounded-lg h-48 w-72 shadow-md dark:bg-gray-800 dark:border-gray-700">
 

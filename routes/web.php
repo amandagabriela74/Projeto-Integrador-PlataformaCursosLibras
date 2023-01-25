@@ -46,7 +46,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::delete('/{id}', [CourseController::class, 'destroy'])->where('id', '[0-9]+')->name('course-destroy');
 });
 
-Route::resource('/dashboardd', SubscriptionController::class);
+Route::resource('/inscricao', SubscriptionController::class);
 
 
 Route::get('/dashboard', function () {
