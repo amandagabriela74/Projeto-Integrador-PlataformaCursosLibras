@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\ChoiceController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use App\Models\Answer;
@@ -39,19 +40,16 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/', [CourseController::class, 'store'])->name('course-store');   //rota armazenar os cursos criados
 
     //UPDATE
-    Route::get('/{id}/edit-course', [CourseController::class, 'edit'])->where('id', '[0-9]+')->name('course-edit');   //rota editar
     Route::put('/{course}', [CourseController::class, 'update'])->where('id', '[0-9]+')->name('course-update');
 
     //DELETE
-    Route::delete('/{id}', [CourseController::class, 'destroy'])->where('id', '[0-9]+')->name('course-destroy');
 });
 
 Route::resource('/inscricao', SubscriptionController::class);
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+Route::get('/dashboard', [Dashboard::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::get('/coursesUser', function () {
     return view('users.courses');

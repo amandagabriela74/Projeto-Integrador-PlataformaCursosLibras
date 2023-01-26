@@ -7,7 +7,7 @@
         <div class="h-screen w-full">
             <div class="p-20">
                 <div class=" grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
-                    @foreach (\App\Models\Module::all() as $module)
+                    @foreach ($modules as $module)
                         <div
                             class="max-w-sm bg-white border border-gray-200 rounded-lg h-48 w-72 shadow-md dark:bg-gray-800 dark:border-gray-700">
 
