@@ -12,18 +12,6 @@ class CourseController extends Controller
 {
     public function index(Module $module)
     {
-        //dd('Olá Mundo');
-        // $courses = Course::all();
-        //dd($courses);
-       // return redirect()->route('course-module');
-      //  return view('painel-admin'); //exportar a variavel por parametro
-        // return view('painel-admin', ['courses'=> $courses]);
-
-      //  $moduleId = $id;
-      //  $module = Module::find($moduleId);
-      //  $courses = Course::where('module_id', $moduleId)->get();
-     // $courses = $module->courses;
-      // return view('course', ['moduleCourses'=> $courses]);
       $courses = Course::all();
       return view('courses.index', compact('courses'));
   
@@ -77,17 +65,9 @@ class CourseController extends Controller
 
     }
 
-
     public function destroy($id){
       //dd($id);
       Course::where('id',$id)->delete();
-      return redirect()->route('courses.index');
+      return back();
     }
-/*
-    public function destroy($id){
-      Event::findOrFail($id)->delete();
-      return redirect()->route('cursos-index');
-
-    }
-*/
 }
