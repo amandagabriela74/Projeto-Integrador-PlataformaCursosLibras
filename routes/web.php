@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\ChoiceController;
 use App\Http\Controllers\CourseController;
@@ -97,6 +98,8 @@ Route::get('meusCursos/{id}', [UserController::class, 'showCourses'])->name('cou
 
 Route::get('/support', function () { 
     return view('support');})->name('support');
+
+Route::resource('admin', AdminController::class);
 
 //quando tiver algum erro referente a rota, mostra na tela esse return
 Route::fallback(function () {
