@@ -10,59 +10,44 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    public function index(Module $module)
-    {
-      $courses = Course::all();
-      return view('courses.index', compact('courses'));
-  
-    }
 
     public function create(){
-      return view('courses.create');
+      $modules = Module::all();
+      return view('courses.create', compact('modules'));
     }
 
 
     public function store(Request $request){
-     // dd($request);
-     Course::create($request->all());
-     return redirect()->route('courses.index');   //após a criação retorna para o index
+      Course::create([
+        'titulo' => $request->titulo,
+        'topico' => $request->topico,
+        'embed' => $request->embed,
+        'descricao' => $request->descricao,
+        'module_id' => $request->moduleId
+      ]);
+  
+      return redirect()->route('modules.index');
 
     }
-
-    public function show(Module $module)
-    {
-        //
-        $courses = $module->courses;
-        return view('course', ['moduleCourses'=> $courses]);
-    }
-
 
     public function edit($id){
-      $courses = Course::where('id',$id)->first();  //procurar na tabela jofos (model) onde o id seja igual ao id do parametro
-      if(!empty($courses))//verificação: se a variação cursos (não encontrar o curso referente ao id) estiver vazia ele redireciona para a listagem
-      {
-        //dd($cursos);
-        return view('courses.edit', ['courses'=> $courses]);
-    }
-      else
-      {
-        return redirect()->route('courses.index');
-      }
+     
+    $course = Course::where('id', $id)->first();
+    
+    return view('courses.edit',compact('course'));
     }
 
     public function update(Request $request, Course $course){
-      //dd($request);
-      //dd($id);
+
       $data = [
         'titulo'=> $request->titulo,
         'topico'=> $request->topico,
         'embed'=> $request->embed,
-        'descricao'=> $request->descricao,
+        'descricao'=> $request->descricao,        
       ];
-      // Course::where('id', $id)->update($data); //Para atualizar no banco , com o MOdel onde o id seja igual a variavel id, passa um update na variavel data
-      $course->update($data);
-      return redirect()->route('courses.index');
 
+      $course->update($data);
+      return redirect()->route('modules.index');
     }
 
     public function destroy($id){

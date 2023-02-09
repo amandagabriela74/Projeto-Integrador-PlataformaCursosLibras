@@ -18,6 +18,7 @@ class ModuleController extends Controller
 
         return view('quiz.modules.index', compact('modules'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +27,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        //
+        return view('quiz.modules.create');
     }
 
     /**
@@ -35,10 +36,13 @@ class ModuleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
+    public function store(Request $request){
+
+        Module::create($request->all());
+
+        return redirect()->route('modules.index');  
+       }
 
     /**
      * Display the specified resource.
@@ -48,7 +52,10 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        //
+        $module = $module;
+        $courses = $module->courses;
+
+        return view('quiz.modules.show', ['moduleCourses' => $courses], ['module' => $module]);
     }
 
     /**
@@ -63,7 +70,6 @@ class ModuleController extends Controller
         $modules = Module::where('id',$id)->first();
         if(!empty($modules))
         {
-            //dd($modules);
             return view('quiz.modules.edit', compact('modules'));
         }
           else
@@ -96,8 +102,9 @@ class ModuleController extends Controller
      * @param  \App\Models\Module  $module
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Module $module)
+    public function destroy($id)
     {
-        //
+        Module::where('id', $id)->delete();
+        return back();
     }
 }

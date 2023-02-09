@@ -1,42 +1,52 @@
 <x-app-layout>
-    <x-slot name="header">
-        Adicionar curso sdvcusdvuc   
-    </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class=" py-10 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <h1 class=" flex justify-center items-center text-5xl font-bold text-gray-800 dark:text-white">Editar curso : {{$courses->titulo}}</h1>
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h1>Editar curso</h1>
-                    <form action="{{route('courses.update',[$courses->id])}}" method="POST">
-                      @csrf
-                      @method('PUT')
-                      <div class="">
-                          <div class="flex flex-col">
-                              <label for="titulo">Título:</label>
-                              <x-text-input type="text" class="form-control" name="titulo" value="{{$courses->titulo}}" placeholder="Digite um titulo.."/>
-                          </div>
-                          <div class="flex flex-col">
-                              <label for="topico">Tópico:</label>
-                              <x-text-input type="text" class="form-control" name="topico" value="{{$courses->topico}}" placeholder="Digite um tópico.."/>
-                          </div>
-                          <div class="flex flex-col">
-                              <label for="embed">Embed:</label>
-                              <x-text-input type="text" class="form-control" name="embed" value="{{$courses->embed}}" placeholder="Digite a URL no seu vídeo.."/>
-                          </div>
-                          <div class="flex flex-col">
-                              <label for="descricao">Descrição:</label>
-                              <x-text-input type="text" class="form-control" name="descricao" value="{{$courses->descricao}}" placeholder="Digite uma descrição.."/>
-                          </div>
-                          <div class="flex flex-col">
-                              <x-text-input type="submit" name="submit" value="Atualizar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded cursor-pointer w-24 mt-4"/>
-                          </div>
-                      </div>
-                    </form>
+    <div class="container-fluid flex flex-row ">
+        <div class="">
+            <x-menu-user></x-menu-user>
+        </div>
+        <div class="h-screen w-full ">
+            <div class="flex justify-center max-screen  mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white  w-4/6 overflow-hidden shadow-sm sm:rounded-lg my-20 py-8 px-24 ">
+                    <div class="p-6 sm:p-0 border-gray-200">
+                        <x-sub-title>Edição do Módulo - {{ $course->module->title }}</x-sub-title>
+                        <form action="{{ route('courses.update', $course->id) }}" method="post">
+                            @csrf
+                            @method('put')
+                            <div class=" mb-6 ">
+                                <div>
+                                    <label for="title"
+                                        class="block mb-1 text-lg font-medium text-gray-900 dark:text-white">{{ __('Título') }}</label>
+                                    <input type="text" name="titulo" value="{{ old('titulo', $course->titulo) }}"
+                                        class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="topico"
+                                        class="block mb-1 text-lg font-medium text-gray-900 dark:text-white">{{ __('Tópico') }}</label>
+                                    <input type="text" name="topico" value="{{ old('topico', $course->topico) }}"
+                                        class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="embed"
+                                        class="block mb-1 text-lg font-medium text-gray-900 dark:text-white">{{ __('Embed') }}</label>
+                                    <input type="text" name="embed" value="{{ old('embed', $course->embed) }}"
+                                        class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="descricao"
+                                        class="block mb-1 text-lg font-medium text-gray-900 dark:text-white">{{ __('Descrição') }}</label>
+                                    <input type="text" name="descricao"
+                                        value="{{ old('descricao', $course->descricao) }}"
+                                        class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
 
+                                <div class="flex justify-end ">
+                                    <button type="submit"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
 </x-app-layout>
