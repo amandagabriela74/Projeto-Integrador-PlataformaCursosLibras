@@ -1,6 +1,6 @@
 <br><br><br><br><br><br>
-<p>Certificamos que</p>
-<h1>Amanda</h1>
-<p>em janeiro de  12/34/2021, concluiu o curso</p>
-<h1>Alfabeto em Libras</h1>
-<p>No formato curso online livre, com carga orária de 3hrs</p>
+<font size="5">Certificamos que</font>
+<h1><font size="7">{{$user}}</font></h1>
+<font size="5">em {{date('d/m/Y \à\s H:i:s')}}, concluiu o curso:</font>
+<h1><font size="7">{{$course->titulo}}</font></h1>
+<font size="5">Na plataforma AprendeLibras no formato curso online livre, com carga horária de 3hrs</font>
