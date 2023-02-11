@@ -10,19 +10,17 @@ class Dashboard extends Controller
 {
     public function index()
     {
-        $modules = Module::all();
+        $allModules = Module::all();
 
-        $inscricoes = auth()->user()->subscriptions;
+        $userSubscriptions = auth()->user()->subscriptions;
 
-        foreach($modules as $module){
-            $exists = $inscricoes->firstWhere(['module_id' => $module->id]) !== null;
-           
+        $modules = collect([]);
+
+        foreach ($allModules as $module) {
+            $isSubscribedModule = $userSubscriptions->firstWhere('module_id', $module->id) !== null;
+            $modules->push(['id' => $module->id, 'title' => $module->title, 'isSubscribedModule' => $isSubscribedModule]);
         }
 
         return view('dashboard', compact('modules'));
-    }
-
-    private function validateSubscription($item,$moduleId){
-        
     }
 }
