@@ -1,5 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
+<h1 align="center"> Estude Libras 2.0 </h1>
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
@@ -7,60 +6,75 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+<p align="center">
+<img src="http://img.shields.io/static/v1?label=STATUS&message=COMPLETO&color=GREEN&style=for-the-badge"/>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Descrição do projeto
+Este projeto é uma plataforma de curso de libras online, no qual tem o objetivo de democrativar o acesso a língua de sinais aos indivíduos. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## :hammer: Funcionalidades do projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Professor**
+- **``Gerenciamento da plataforma:``** 
+    O professor tem total autonomia para criar, editar e excluir os módulos, cursos, questionários e usuários cadastrados na plataforma.
+- **``Painel de acompanhamento geral:``** 
+    O professor consegue enxergar os dados gerais da plataforma.
+- **``Dados específicos dos alunos:``** 
+    Interface dos usuários cadastrados e seus rendimentos individuais 
 
-## Learning Laravel
+**Aluno**
+- Inscrição nos módulos
+- Exibição dos módulos cadastrados e concluídos
+- Comentários em cada curso
+- Quiz
+- Painel com resumos das atividades desenvolvidas
+- Emissão de certificado dos cursos
+- Alterar dados do perfil do usuário
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✔️ Técnicas e tecnologias utilizadas
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- ``Laravel 9``
+- ``Tailwind CSS``
+- ``Alpine.js``
+- ``Mysql``
+- ``Versionamento no Git``
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## 🛠️ Abrir e rodar o projeto
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Faça o download do projeto pelo git, podendo ser pelo comando gitclone ou baixando o arquivo compactado.
 
-### Premium Partners
+## 📁 Acesso ao projeto
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### Clone o projeto
+**``git clone git@github.com:seuprojeto``** 
 
-## Contributing
+#### Acesse o projeto
+**``cd gfhgfhg``** 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Instale as dependências e o framework
+**``composer install --no-scripts``** 
 
-## Code of Conduct
+#### Copie o arquivo .env.example
+**``cp .env.example .env``** 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+#### Crie uma nova chave para a aplicação
+**``php artisan key:generate``** <br/>
+Em seguida você deve configurar o arquivo .env com o nome do banco, usuário e senha do seu banco de dados.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+#### Rodar as migrations
+**``php artisan migrate --seed``** 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+#### instalar dependências "node modules" e iniciar servidor
+**``npm install``** 
+**``npm run dev``** 
+
+
+#### hospeda seu projeto em seu servidor local
+**``php artisan serve``** 
+
+**Após todos esses comandos, visualize seu projeto na porta 8000**
