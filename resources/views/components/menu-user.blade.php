@@ -99,7 +99,7 @@
                     </x-nav-menu-user>
                 </li>
                 <li class="">
-                    <x-nav-menu-user {{-- :href="route('users')" :active="request()->routeIs(route('users'))" --}}>
+                    <x-nav-menu-user :href="route('users')" :active="request()->routeIs(route('users'))">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 512"
                             class="fill-blue-600 m-3 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                             <path

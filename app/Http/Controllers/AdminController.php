@@ -20,6 +20,12 @@ class AdminController extends Controller
         $courses = Course::all()->count();
         $quizzes = Quiz::all()->count();
         $subscribes = Subscription::all()->count();
+        
         return view('admin.index', compact('users', 'frequentUsers', 'modules', 'frequentModules', 'courses', 'quizzes'));
+    }
+
+    public function showUsers(){
+        $users = User::all();
+        return view('admin.users', compact('users'));
     }
 }

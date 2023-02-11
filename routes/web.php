@@ -100,6 +100,7 @@ Route::get('/support', function () {
     return view('support');})->name('support');
 
 Route::resource('admin', AdminController::class);
+Route::get('/users', [AdminController::class, 'showUsers'])->name('users');
 
 //quando tiver algum erro referente a rota, mostra na tela esse return
 Route::fallback(function () {
