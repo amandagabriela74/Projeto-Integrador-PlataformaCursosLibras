@@ -28,7 +28,8 @@ class QuizController extends Controller
      */
     public function create()
     {
-
+        $modules = Module::all();
+        return view('quiz.quizzes.create', compact('modules'));
     }
 
     /**
@@ -39,7 +40,12 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
+        Quiz::create([
+            'title' => $request->input('title'),
+            'module_id' =>  $request->module
+        ]);
 
+        return redirect()->route('quizzes.index');
     }
 
     /**
@@ -50,7 +56,9 @@ class QuizController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        //
+        
+        $quizzes = $quiz->questions;
+        return view('quiz.quizzes.show', ['quizQuestions' => $quizzes, 'quiz'=>$quiz]);
     }
 
     /**
@@ -59,9 +67,15 @@ class QuizController extends Controller
      * @param  \App\Models\Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quiz $quiz)
+    public function edit($id)
     {
-        //
+        $modules = Module::all();
+        $quizzes = Quiz::where('id', $id)->first();
+        if (!empty($quizzes)) {
+            return view('quiz.quizzes.edit', compact('quizzes', 'modules'));
+        } else {
+            return back();
+        }
     }
     /**
      * Update the specified resource in storage.
@@ -72,7 +86,13 @@ class QuizController extends Controller
      */
     public function update(Request $request, Quiz $quiz)
     {
-        //
+        $data = [
+            'title' => $request->input('title'),
+            'module_id' =>  $request->module
+        ];
+
+        $quiz->update($data);
+        return redirect()->route('quizzes.index');
     }
 
     /**
@@ -81,8 +101,9 @@ class QuizController extends Controller
      * @param  \App\Models\Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quiz $quiz)
+    public function destroy($id)
     {
-        //
+        Quiz::where('id', $id)->delete();
+        return back();
     }
 }

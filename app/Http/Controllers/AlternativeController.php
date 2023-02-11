@@ -16,10 +16,7 @@ class AlternativeController extends Controller
      */
     public function index()
     {
-        //
-        $alternatives = Alternative::all();
-
-        return view('quiz.alternatives.index', compact('alternatives'));
+    
     }
 
     /**
@@ -29,8 +26,8 @@ class AlternativeController extends Controller
      */
     public function create()
     {
-        //
-        return view('quiz.alternatives.create');
+        $questions = Question::all();
+        return view('quiz.alternatives.create', compact('questions'));
     }
 
     /**
@@ -41,15 +38,14 @@ class AlternativeController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // dd($request); 
         Alternative::create([
-            'alternative' => $request->alternative,
-            'correct' => $request->correct,
-            'question_id' => $request->question
+
+            'alternative' => $request->input('alternative'),
+            'correct' => $request->input('correct'),
+            'question_id' => $request->questionId,
         ]);
 
-        return redirect('alternatives');
+        return redirect()->route('quizzes.index');
     }
 
     /**
@@ -69,7 +65,7 @@ class AlternativeController extends Controller
      * @param  \App\Models\Alternative  $alternative
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alternative $alternative): View
+    public function edit(Alternative $alternative)
     {
         $questions = Question::all()->pluck('question', 'id');
 
@@ -85,16 +81,14 @@ class AlternativeController extends Controller
      */
     public function update(Request $request, Alternative $alternative)
     {
-        //dd($request);
-        //dd($alternative);
         $data = [
-            'alternative'=> $request->alternative,
-            'correct'=> $request->correct,
-            'question_id'=> $request->question,
-          ];
-          // Course::where('id', $id)->update($data); //Para atualizar no banco , com o MOdel onde o id seja igual a variavel id, passa um update na variavel data
-          $alternative->update($data);
-          return redirect()->route('alternatives.index');
+            'alternative' => $request->alternative,
+            'correct' => $request->correct,
+            'question_id' => $request->question,
+        ];
+
+        $alternative->update($data);
+        return redirect()->route('alternatives.index');
     }
 
     /**
@@ -107,6 +101,6 @@ class AlternativeController extends Controller
     {
                 //dd($id);
                 Alternative::where('id',$id)->delete();
-                return redirect()->route('alternatives.index');
+                return back();
     }
 }
