@@ -92,7 +92,7 @@ Route::resource('comments', \App\Http\Controllers\CommentController::class);
 Route::resource('users', UserController::class);
 
 Route::get('certificados/{id}', [UserController::class, 'showCertificate'])->name('certificates');
-Route::get('generatePDF', [UserController::class, 'generatePDF'])->name('user.pdf');
+Route::get('certificado/{id}', [UserController::class, 'generatePDF'])->name('user.pdf');
 
 Route::get('meusCursos/{id}', [UserController::class, 'showCourses'])->name('coursesUser');
 

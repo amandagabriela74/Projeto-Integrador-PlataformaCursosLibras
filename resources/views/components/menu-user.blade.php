@@ -64,7 +64,7 @@
             </li>
 
         </ul>
-       {{--  @if (Auth::user()->is_admin) --}}
+        @if (Auth::user()->is_admin)
         <ul class="pt-4 mt-4 space-y-2 border-t-2 border-gray-200 dark:border-gray-700">
             <li class="">
                 <x-nav-menu-user :href="route('admin.index')" :active="request()->routeIs(route('admin.index'))">
@@ -112,7 +112,7 @@
                 </li>
         </ul>
 
-       {{--  @endif --}}
+        @endif
 
     </div>
 </aside>

@@ -4,45 +4,21 @@
             <x-menu-user></x-menu-user>
 
         </div>
-{{--         Perfil do usuário logado
         <div class="h-screen w-full ">
-            <div class="flex justify-center max-screen h-screen mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white h-4/5 w-4/6 overflow-hidden shadow-sm sm:rounded-lg my-20 py-8 px-24 ">
-                    <div class="p-6 sm:p-0 border-gray-200">
-                        <h1>Listagem do meu usuário {{ $user->name }}</h1>
-                        <ul>
-                            @if ($user->image)
-                                <img src="{{ url("storage/{$user->image}") }}" alt="{{ $user->name }}"
-                                    class="object-cover w-20">
-                            @else
-                                <img src="{{ url('images/101.jpg') }}" alt="">
-                            @endif
-                            <li>
-
-                                {{ $user->name }} -
-                                {{ $user->email }}
-                                <a href="{{ route('users.edit', '$user->id') }}">Editar</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        <div class="h-screen w-full ">
-            <div class="flex justify-center max-screen h-screen mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white h-5/6 w-4/6 overflow-hidden shadow-sm sm:rounded-lg my-20 py-8 px-24 ">
-                    <div class="p-6 sm:p-0 border-gray-200">
-                        <h1 class="mb-2">Meus Dados - {{ $user->name }}</h1>
+            <div class="flex justify-center max-screen h-screen mx-auto sm:px-6 lg:px-">
+                <div class="bg-white h-5/6 w-4/6 overflow-hidden shadow-sm sm:rounded-lg my-20  px-24 ">
+                    <div class="">
+                        <x-sub-title>Meus Dados - {{ $user->name }}</x-sub-title>
                         <form action="{{ route('users.update', $user->id) }}" method="post" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class=" mb-6 ">
-                                <div class="flex flex-row items-center">
+                                <div class="flex flex-row items-center ">
                                     <img src="{{ url("storage/{$user->image}") }}" alt="{{ $user->name }}"
                                         class="object-cover h-24 w-24 rounded-full">
 
                                     <input type="file" name="image"
-                                        class="pl-2 block w-full mb-5 text-xs text-gray-900
+                                        class="pl-10 block  mb-5 text-xs text-gray-900
                                         rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400
                                         focus:outline-none dark:bg-gray-700 dark:border-gray-600
                                         dark:placeholder-gray-400">
@@ -79,7 +55,6 @@
                                 <button type="submit"
                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
